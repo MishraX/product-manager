@@ -1,7 +1,32 @@
 export default function Footer() {
     return (
-        <footer className="bg-dark border-t border-white/10 py-14 md:py-16 px-5 md:px-6">
-            <div className="max-w-4xl mx-auto text-center space-y-8">
+        <footer
+            className="relative px-5 md:px-6"
+            style={{
+                background: `
+          linear-gradient(180deg,
+            #d4c8e8 0%,
+            #c8bce0 8%,
+            #b8add5 16%,
+            #a89ec8 24%,
+            #9890bb 32%,
+            #8882ae 40%,
+            #7872a0 48%,
+            #686292 55%,
+            #585282 62%,
+            #484370 69%,
+            #383460 76%,
+            #282550 82%,
+            #1a1840 88%,
+            #10102a 93%,
+            #0a0a0a 100%
+          )
+        `,
+                paddingTop: '6rem',
+                paddingBottom: '3.5rem',
+            }}
+        >
+            <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
                 {/* Email in Caveat hand-drawn font */}
                 <a
                     href="mailto:mishraaa.suraj@gmail.com"
@@ -69,7 +94,7 @@ export default function Footer() {
                 </div>
 
                 {/* Copyright */}
-                <p className="text-white/30 text-xs font-sans">
+                <p className="text-white/25 text-xs font-sans">
                     &copy; {new Date().getFullYear()} Suraj Mishra. All Rights Reserved.
                 </p>
             </div>

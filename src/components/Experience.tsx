@@ -5,7 +5,7 @@ import { ArrowUpRight, FileText, Linkedin } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* HBS Shield SVG — simplified official Harvard shield */
+/* HBS Shield SVG */
 const HBSShield = ({ className }: { className?: string }) => (
     <svg className={className} width="32" height="38" viewBox="0 0 32 38" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M16 0L0 6V20C0 30 16 38 16 38C16 38 32 30 32 20V6L16 0Z" fill="#A51C30" />
@@ -76,12 +76,28 @@ export default function Experience() {
     };
 
     return (
-        <section ref={containerRef} className="bg-warm-gray py-16 md:py-24 lg:py-32 px-5 md:px-6">
-            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+        <section
+            ref={containerRef}
+            className="relative py-16 md:py-24 lg:py-32 px-5 md:px-6"
+            style={{
+                background: `
+          linear-gradient(180deg,
+            #a8ccf0 0%,
+            #e0e5f0 15%,
+            #e8dfe8 30%,
+            #f0dade 45%,
+            #f2d8d5 60%,
+            #f4d6d1 75%,
+            #f5d5d0 100%
+          )
+        `,
+            }}
+        >
+            <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 relative z-10">
 
                 {/* Left: Profile Card */}
                 <div className="lg:col-span-4 exp-reveal">
-                    <div className="bg-cream rounded-2xl p-6 shadow-sm border border-stone-200/60 sticky top-8">
+                    <div className="bg-white/50 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-white/60 sticky top-8">
                         {/* Profile Photo */}
                         <div className="aspect-square md:aspect-[3/4] rounded-xl overflow-hidden mb-5 bg-stone-200">
                             <img
@@ -122,7 +138,7 @@ export default function Experience() {
                                 href="https://linkedin.com/in/mishrax27"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex-1 flex items-center justify-center gap-2 border border-stone-300 py-3 px-4 rounded-full text-sm font-sans font-medium hover:bg-stone-100 transition-colors text-dark"
+                                className="flex-1 flex items-center justify-center gap-2 border border-stone-300/60 bg-white/30 py-3 px-4 rounded-full text-sm font-sans font-medium hover:bg-white/50 transition-colors text-dark"
                             >
                                 LinkedIn <Linkedin size={14} />
                             </a>
@@ -135,7 +151,7 @@ export default function Experience() {
 
                     {/* Work Section */}
                     <div className="exp-reveal">
-                        <h3 className="text-sm uppercase tracking-[0.3em] text-dark/40 font-sans mb-8">Work Experience</h3>
+                        <h3 className="font-hand text-2xl md:text-3xl text-dark/50 mb-8">Work Experience</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 md:gap-y-10">
                             {workHistory.map((item, i) => (
                                 <div key={i} className="exp-reveal group">
@@ -149,8 +165,8 @@ export default function Experience() {
 
                     {/* Education — subtle separate box */}
                     <div className="exp-reveal">
-                        <h3 className="text-sm uppercase tracking-[0.3em] text-dark/40 font-sans mb-6">Education</h3>
-                        <div className="bg-warm-gray border border-stone-200/50 rounded-xl p-5 md:p-6">
+                        <h3 className="font-hand text-2xl md:text-3xl text-dark/50 mb-6">Education</h3>
+                        <div className="bg-white/40 backdrop-blur-sm border border-white/50 rounded-xl p-5 md:p-6">
                             <div className="flex items-start gap-4">
                                 <HBSShield className="flex-shrink-0 mt-0.5" />
                                 <div>
@@ -164,7 +180,7 @@ export default function Experience() {
 
                     {/* Projects Section */}
                     <div className="exp-reveal">
-                        <h3 className="text-sm uppercase tracking-[0.3em] text-dark/40 font-sans mb-8">Projects</h3>
+                        <h3 className="font-hand text-2xl md:text-3xl text-dark/50 mb-8">Projects</h3>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
                             {projects.map((item, i) => (
                                 <div key={i} className="exp-reveal group cursor-pointer">

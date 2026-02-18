@@ -9,6 +9,16 @@ interface HeroProps {
     isLoaded: boolean;
 }
 
+/*
+  COLOR FLOW MAP:
+  Hero:       #8B7355 (brown beige) → #FDFCF6 (cream)
+  Bio:        #FDFCF6 (cream)       → #dce8f5 (light blue)
+  Experience: #dce8f5 (light blue)  → #f5d5d0 (rose/strawberry)
+  Skills:     #f5d5d0 (rose)        → #e0d4f0 (lavender)
+  Checklist:  #e0d4f0 (lavender)    → #d4c8e8 (lilac)
+  Footer:     #0a0a0a (black)
+*/
+
 export default function Hero({ isLoaded }: HeroProps) {
     const containerRef = useRef<HTMLDivElement>(null);
     const titleRef = useRef<HTMLHeadingElement>(null);
@@ -17,13 +27,11 @@ export default function Hero({ isLoaded }: HeroProps) {
     const hasAnimated = useRef(false);
 
     useEffect(() => {
-        // Only run entrance animations AFTER loading screen is done
         if (!isLoaded || hasAnimated.current) return;
         hasAnimated.current = true;
 
         const tl = gsap.timeline();
 
-        // Make sure elements start visible, then animate from hidden
         tl.fromTo(titleRef.current,
             { y: 80, opacity: 0 },
             { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
@@ -39,7 +47,6 @@ export default function Hero({ isLoaded }: HeroProps) {
                 "-=0.2"
             );
 
-        // Parallax on scroll
         if (titleRef.current) {
             gsap.to(titleRef.current, {
                 yPercent: -30,
@@ -64,33 +71,27 @@ export default function Hero({ isLoaded }: HeroProps) {
             ref={containerRef}
             className="relative min-h-screen w-full overflow-hidden flex flex-col"
             style={{
-                background: 'linear-gradient(180deg, #2563eb 0%, #3b82f6 25%, #60a5fa 50%, #93bbf5 70%, #c9ddf5 85%, #FDFCF6 100%)',
+                background: `
+          linear-gradient(180deg,
+            #8B7355 0%,
+            #a08868 15%,
+            #bda482 30%,
+            #d4c4a0 45%,
+            #e8dcc4 60%,
+            #f2ece0 75%,
+            #f8f5ee 88%,
+            #FDFCF6 100%
+          )
+        `,
+                backgroundSize: '100% 100%',
             }}
         >
-            {/* Animated gradient layer rising from bottom */}
-            <div
-                className="absolute bottom-0 left-0 right-0 z-[1] h-[25vh] md:h-[30vh]"
-                style={{
-                    background: 'linear-gradient(180deg, transparent 0%, #c9ddf5 30%, #93bbf5 60%, #60a5fa 100%)',
-                    animation: 'riseGradient 2s ease-out forwards',
-                    opacity: 0.5,
-                }}
-            />
-            <div
-                className="absolute bottom-0 left-0 right-0 z-[2] h-[25vh] md:h-[30vh]"
-                style={{
-                    background: 'linear-gradient(0deg, #c9ddf5 0%, #93bbf5 40%, transparent 100%)',
-                    animation: 'slowDrift 8s ease-in-out infinite',
-                    opacity: 0.3,
-                }}
-            />
-
             {/* Top Bar */}
             <nav className="relative z-10 flex justify-between items-center px-5 py-4 md:px-12 md:py-6">
-                <span className="text-white text-base md:text-lg font-serif tracking-wide drop-shadow-sm">Suraj Mishra</span>
+                <span className="text-white text-base md:text-lg font-serif tracking-wide drop-shadow-md">Suraj Mishra</span>
                 <a
                     href="mailto:mishraaa.suraj@gmail.com"
-                    className="text-white/80 hover:text-white transition-colors drop-shadow-sm"
+                    className="text-white/80 hover:text-white transition-colors drop-shadow-md"
                     title="Email me"
                 >
                     <Mail size={20} className="md:w-[22px] md:h-[22px]" />
@@ -99,14 +100,14 @@ export default function Hero({ isLoaded }: HeroProps) {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col items-center justify-center px-5 md:px-6 text-center relative z-10">
-                {/* Start hidden; GSAP animates to visible ONLY after loading screen exits */}
                 <h1
                     ref={titleRef}
-                    className="font-serif font-bold text-white tracking-tight"
+                    className="font-serif font-bold tracking-tight"
                     style={{
                         fontSize: 'clamp(3.5rem, 14vw, 12rem)',
                         lineHeight: 0.9,
-                        textShadow: '0 4px 30px rgba(0,0,0,0.25), 0 1px 3px rgba(0,0,0,0.15)',
+                        color: '#f5f0e8',
+                        textShadow: '0 4px 30px rgba(60,40,20,0.4), 0 1px 3px rgba(60,40,20,0.2)',
                         opacity: 0,
                     }}
                 >
@@ -116,9 +117,9 @@ export default function Hero({ isLoaded }: HeroProps) {
 
                 <p
                     ref={subtitleRef}
-                    className="mt-6 md:mt-8 max-w-lg md:max-w-xl text-white/90 text-sm md:text-lg font-sans font-light leading-relaxed px-2"
+                    className="mt-6 md:mt-8 max-w-lg md:max-w-xl text-sm md:text-lg font-sans font-light leading-relaxed px-2"
                     style={{
-                        textShadow: '0 2px 12px rgba(0,0,0,0.2)',
+                        color: '#4a3d2e',
                         opacity: 0,
                     }}
                 >
@@ -134,12 +135,12 @@ export default function Hero({ isLoaded }: HeroProps) {
                 style={{ opacity: 0 }}
             >
                 <span
-                    className="text-[10px] md:text-xs uppercase tracking-[0.3em] text-white/70 font-sans mb-2"
-                    style={{ textShadow: '0 1px 6px rgba(0,0,0,0.15)' }}
+                    className="text-[10px] md:text-xs uppercase tracking-[0.3em] font-sans mb-2"
+                    style={{ color: '#6b5d4a' }}
                 >
                     Scroll
                 </span>
-                <ChevronDown size={18} className="text-white/70 bounce-arrow" />
+                <ChevronDown size={18} style={{ color: '#7a6b58' }} className="bounce-arrow" />
             </div>
         </section>
     );

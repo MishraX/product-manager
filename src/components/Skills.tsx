@@ -26,8 +26,6 @@ export default function Skills() {
     const columns = [
         {
             title: "Core Competencies",
-            bg: "bg-blue-50",
-            border: "border-blue-100",
             items: [
                 "0-to-1 Product Lifecycle",
                 "Cross-Functional Leadership",
@@ -38,8 +36,6 @@ export default function Skills() {
         },
         {
             title: "Product Execution",
-            bg: "bg-amber-50",
-            border: "border-amber-100",
             items: [
                 "Agile & Scrum Methodologies",
                 "Backlog Prioritization",
@@ -49,8 +45,6 @@ export default function Skills() {
         },
         {
             title: "Technical Proficiency",
-            bg: "bg-emerald-50",
-            border: "border-emerald-100",
             items: [
                 "API Design & Integration (REST)",
                 "Cloud Infrastructure (AWS)",
@@ -61,17 +55,33 @@ export default function Skills() {
     ];
 
     return (
-        <section ref={containerRef} className="bg-cream py-24 md:py-32 px-6">
-            <div className="max-w-6xl mx-auto">
-                <h2 className="text-sm uppercase tracking-[0.3em] text-dark/40 font-sans mb-12 text-center">
+        <section
+            ref={containerRef}
+            className="relative py-24 md:py-32 px-5 md:px-6"
+            style={{
+                background: `
+          linear-gradient(180deg,
+            #f5d5d0 0%,
+            #f0d2d2 15%,
+            #ebd0d8 30%,
+            #e5cee0 45%,
+            #e2cfe6 60%,
+            #e0d2ec 80%,
+            #e0d4f0 100%
+          )
+        `,
+            }}
+        >
+            <div className="max-w-6xl mx-auto relative z-10">
+                <h2 className="font-hand text-2xl md:text-3xl text-dark/50 mb-12 text-center">
                     Skills
                 </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
                     {columns.map((col, i) => (
                         <div
                             key={i}
-                            className={`skill-col ${col.bg} ${col.border} border rounded-2xl p-8`}
+                            className="skill-col bg-white/40 backdrop-blur-sm border border-white/50 rounded-2xl p-6 md:p-8"
                         >
                             <h3 className="text-lg font-serif font-semibold text-dark mb-6">
                                 {col.title}
@@ -80,9 +90,9 @@ export default function Skills() {
                                 {col.items.map((item, j) => (
                                     <li
                                         key={j}
-                                        className="text-dark/70 font-sans text-sm leading-relaxed flex items-start gap-2"
+                                        className="text-dark/65 font-sans text-sm leading-relaxed flex items-start gap-2"
                                     >
-                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-dark/30 flex-shrink-0"></span>
+                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-dark/25 flex-shrink-0"></span>
                                         {item}
                                     </li>
                                 ))}

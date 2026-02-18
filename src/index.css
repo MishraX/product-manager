@@ -19,6 +19,21 @@
   --font-size-hero--line-height: 0.9;
 }
 
+/* ─── Smooth animated gradient shimmer for sections ─── */
+@keyframes gradientShimmer {
+  0% {
+    background-position: 0% 0%;
+  }
+
+  50% {
+    background-position: 100% 100%;
+  }
+
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
 /* ─── Rising gradient animation for hero ─── */
 @keyframes riseGradient {
   0% {
@@ -50,7 +65,7 @@ html {
 }
 
 body {
-  background: var(--color-cream);
+  background: #0a0a0a;
   color: var(--color-dark);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -59,7 +74,7 @@ body {
 }
 
 ::selection {
-  background: #a6c1ee;
+  background: #c9b1ff;
   color: #0A0A0A;
 }
 
@@ -96,16 +111,16 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #FDFCF6;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #c4b89a;
+  background: rgba(120, 100, 80, 0.4);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #9a8e72;
+  background: rgba(120, 100, 80, 0.6);
 }
 
 /* ─── Bounce animation for scroll arrow ─── */
