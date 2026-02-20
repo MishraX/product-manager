@@ -120,19 +120,17 @@ export default function LifeChecklist() {
         return () => ctx.revert();
     }, []);
 
-    const completed = [
-        "Multiple Full Scholarship Offers",
-        "Harvard Business School Online (A+)",
-        "Built 0-1 Products",
-        "Rejected Conventional Path",
-    ];
-
-    const travelGoals = [
-        "Mt Fuji and Tokyo shrine in cherry blossom season",
-        "Try New York bagels",
-        "Make leaning tower of Pisa straight",
-        "Experience Sky Lantern festival in Thailand",
-        "See snowfall in Kashmir",
+    // Combined list of all items — you can easily add/edit items here in any order
+    const allItems = [
+        { text: "Recieved Multiple Full Scholarship Offers", isCompleted: true },
+        { text: "Want to see Mt Fuji and Tokyo shrine in cherry blossom season", isCompleted: false },
+        { text: "Visited Indian States 12/29 ", isCompleted: true },
+        { text: "Want to Try New York bagels", isCompleted: false },
+        { text: "Had Best Dosa in the world- NO CAP", isCompleted: true },
+        { text: "Make leaning tower of Pisa straight", isCompleted: false },
+        { text: "Want to Experience Sky Lantern festival in Thailand", isCompleted: false },
+        { text: "Learned Chinese- Yo Phone Linging pick up yo phone", isCompleted: true },
+        { text: "See snowfall in Kashmir", isCompleted: false },
     ];
 
     return (
@@ -183,24 +181,26 @@ export default function LifeChecklist() {
                     Things I've done, and things I still dream about. Completed items are crossed off — the rest are in progress.
                 </p>
 
-                {/* Completed Items */}
-                <div className="space-y-4 mb-12">
-                    {completed.map((item, i) => (
-                        <div key={i} className="checklist-item flex items-center gap-4 py-3 border-b border-purple-900/15">
-                            <div className="w-5 h-5 rounded-full border-2 border-purple-400/50 flex items-center justify-center flex-shrink-0">
-                                <div className="w-2.5 h-2.5 rounded-full bg-purple-400/60"></div>
-                            </div>
-                            <span className="text-dark/60 font-sans text-sm md:text-base line-through decoration-purple-500/50">{item}</span>
-                        </div>
-                    ))}
-                </div>
-
-                {/* Travel / Future Goals */}
+                {/* Single Combined List */}
                 <div className="space-y-4">
-                    {travelGoals.map((item, i) => (
+                    {allItems.map((item, i) => (
                         <div key={i} className="checklist-item flex items-center gap-4 py-3 border-b border-purple-900/10">
-                            <div className="w-5 h-5 rounded-full border-2 border-purple-500/30 flex-shrink-0"></div>
-                            <span className="text-dark/90 font-sans text-sm md:text-base font-medium">{item}</span>
+                            {item.isCompleted ? (
+                                // Completed Checkmark Box
+                                <div className="w-5 h-5 rounded-full border-2 border-purple-400/50 flex items-center justify-center flex-shrink-0">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-purple-400/60"></div>
+                                </div>
+                            ) : (
+                                // Empty Box
+                                <div className="w-5 h-5 rounded-full border-2 border-purple-500/30 flex-shrink-0"></div>
+                            )}
+
+                            <span className={item.isCompleted
+                                ? "text-dark/60 font-sans text-sm md:text-base line-through decoration-purple-500/50"
+                                : "text-dark/90 font-sans text-sm md:text-base font-medium"
+                            }>
+                                {item.text}
+                            </span>
                         </div>
                     ))}
                 </div>

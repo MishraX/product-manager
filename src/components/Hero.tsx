@@ -32,10 +32,17 @@ export default function Hero({ isLoaded }: HeroProps) {
 
         const tl = gsap.timeline();
 
-        tl.fromTo(titleRef.current,
-            { y: 80, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, ease: "power3.out" }
+        // Product: falling and rotating from top
+        tl.fromTo(".hero-char-p",
+            { y: -120, opacity: 0, rotationZ: 45, scale: 1.2 },
+            { y: 0, opacity: 1, rotationZ: 0, scale: 1, duration: 1, stagger: 0.06, ease: "back.out(1.5)" }
         )
+            // Manager: zapping from right
+            .fromTo(".hero-char-m",
+                { x: 150, opacity: 0, scaleX: 1.5 },
+                { x: 0, opacity: 1, scaleX: 1, duration: 0.8, stagger: 0.04, ease: "expo.out" },
+                "-=0.6"
+            )
             .fromTo(subtitleRef.current,
                 { y: 40, opacity: 0 },
                 { y: 0, opacity: 1, duration: 0.8, ease: "power3.out" },
@@ -102,17 +109,24 @@ export default function Hero({ isLoaded }: HeroProps) {
             <div className="flex-1 flex flex-col items-center justify-center px-5 md:px-6 text-center relative z-10">
                 <h1
                     ref={titleRef}
-                    className="font-serif font-bold tracking-tight"
+                    className="font-serif font-bold tracking-tight pb-4"
                     style={{
                         fontSize: 'clamp(3.5rem, 14vw, 12rem)',
                         lineHeight: 0.9,
                         color: '#f5f0e8',
-                        textShadow: '0 4px 30px rgba(60,40,20,0.4), 0 1px 3px rgba(60,40,20,0.2)',
-                        opacity: 0,
+                        textShadow: '0 4px 30px rgba(60,40,20,0.4), 0 1px 3px rgba(60,40,20,0.2)'
                     }}
                 >
-                    Product<br />
-                    <span className="italic">Manager</span>
+                    <span className="block pb-2">
+                        {"Product".split('').map((char, i) => (
+                            <span key={`p-${i}`} className="inline-block hero-char-p">{char}</span>
+                        ))}
+                    </span>
+                    <span className="italic block mt-2 md:mt-0">
+                        {"Manager".split('').map((char, i) => (
+                            <span key={`m-${i}`} className="inline-block hero-char-m">{char}</span>
+                        ))}
+                    </span>
                 </h1>
 
                 <p
