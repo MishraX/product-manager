@@ -139,7 +139,7 @@ export default function LifeChecklist() {
             className="section-bg-checklist relative py-16 md:py-24 lg:py-32 px-5 md:px-6 overflow-hidden"
         >
             {/* Scattered Doodles */}
-            <div className="transition-opacity duration-700">
+            <div className="absolute inset-0 z-[1] pointer-events-none transition-opacity duration-700">
                 <PaperPlane className="doodle doodle-float absolute top-12 right-8 md:right-16 text-purple-800/35 dark:text-indigo-200/50 rotate-12 scale-75 md:scale-100" />
                 <Star className="doodle doodle-float-delay absolute top-16 left-[35%] text-purple-700/40 dark:text-indigo-300/50 scale-110" />
                 <Compass className="doodle doodle-float absolute top-8 left-[55%] md:left-[60%] text-purple-800/25 dark:text-indigo-200/40 rotate-12" />
