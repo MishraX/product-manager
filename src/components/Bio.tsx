@@ -27,46 +27,20 @@ export default function Bio() {
         <section
             id="bio"
             ref={containerRef}
-            className="relative py-24 md:py-32 px-5 md:px-6"
-            style={{
-                background: `
-          linear-gradient(180deg,
-            #FDFCF6 0%,
-            #f5f5f8 15%,
-            #e8eef8 30%,
-            #d8e4f5 50%,
-            #c8d8f0 70%,
-            #b8d4f0 85%,
-            #a8ccf0 100%
-          )
-        `,
-            }}
+            className="section-bg-bio relative py-20 px-5 md:px-6"
         >
             <div className="max-w-2xl mx-auto relative z-10">
-                <h2 className="font-hand text-2xl md:text-3xl text-dark/50 mb-10 bio-line">Bio</h2>
+                <h2 className="font-hand text-3xl md:text-4xl text-dark/60 dark:text-indigo-200/60 mb-8 md:mb-12 transition-colors duration-700">
+                    Behind the Résumé
+                </h2>
 
-                <div className="space-y-6 text-dark/90 text-lg md:text-xl font-serif leading-relaxed">
+                <div className="space-y-6 md:space-y-8 text-lg md:text-xl font-serif text-dark/90 dark:text-stone-200 leading-relaxed transition-colors duration-700">
                     <p className="bio-line">
-                        I'm a Product Manager helping high-growth startups turn ambitious ideas into products that actually ship.
+                        I'm a Product Manager helping high-growth startups turn ambitious ideas into products that actually ship. I've spent the last few years orchestrating scalable FinTech infrastructure and launching tokenized asset platforms.
                     </p>
 
                     <p className="bio-line">
-                        My 4+ years of experience spans building scalable FinTech infrastructure at{" "}
-                        <span className="text-dark font-semibold underline underline-offset-4 decoration-dark/25">NPCI</span>,
-                        launching tokenized asset platforms at{" "}
-                        <span className="text-dark font-semibold underline underline-offset-4 decoration-dark/25">Dira Foundation</span>,
-                        and digitizing B2B workflows at{" "}
-                        <span className="text-dark font-semibold underline underline-offset-4 decoration-dark/25">Pyramid Timber Associates</span>.
-                    </p>
-
-                    <p className="bio-line">
-                        I previously led a cross-functional team that shipped a UPI cross-border payment routing system, and earlier helped build a 0-to-1 blockchain platform for real-world asset tokenization.
-                    </p>
-
-                    <p className="bio-line">
-                        Outside of work, I spend my time exploring{" "}
-                        <span className="text-dark font-semibold underline underline-offset-4 decoration-dark/25">AI research</span>,{" "}
-                        <span className="text-dark font-semibold underline underline-offset-4 decoration-dark/25">event planning systems</span>, and occasionally convincing the leaning tower of Pisa to stand straight.
+                        Outside of writing PRDs and gently negotiating scope creep with engineers, you'll usually find me trekking up random mountains, exploring obscure beaches, attempting to cook without burning the kitchen down, or pretending I'm a professional photographer.
                     </p>
                 </div>
             </div>

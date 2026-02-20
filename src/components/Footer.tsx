@@ -1,36 +1,26 @@
+import { useRef } from 'react';
+import { Heart } from 'lucide-react'; // Assuming lucide-react is installed for the Heart icon
+
 export default function Footer() {
+    const containerRef = useRef(null);
+
+    // Optional: If you need to do something with the ref, e.g., for GSAP animations
+    // useEffect(() => {
+    //     if (containerRef.current) {
+    //         // Do something with containerRef.current
+    //     }
+    // }, []);
+
     return (
         <footer
-            className="relative px-5 md:px-6"
-            style={{
-                background: `
-          linear-gradient(180deg,
-            #d4c8e8 0%,
-            #c8bce0 8%,
-            #b8add5 16%,
-            #a89ec8 24%,
-            #9890bb 32%,
-            #8882ae 40%,
-            #7872a0 48%,
-            #686292 55%,
-            #585282 62%,
-            #484370 69%,
-            #383460 76%,
-            #282550 82%,
-            #1a1840 88%,
-            #10102a 93%,
-            #0a0a0a 100%
-          )
-        `,
-                paddingTop: '6rem',
-                paddingBottom: '3.5rem',
-            }}
+            ref={containerRef}
+            className="section-bg-footer relative py-12 md:py-20 px-5 md:px-6 z-10"
         >
             <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
                 {/* Email in Caveat hand-drawn font */}
                 <a
                     href="mailto:mishraaa.suraj@gmail.com"
-                    className="text-2xl md:text-5xl font-hand text-white hover:text-white/80 transition-colors inline-block"
+                    className="text-2xl md:text-5xl font-hand text-white dark:text-stone-200 hover:text-white/80 dark:hover:text-stone-400 transition-colors inline-block"
                 >
                     mishraaa.suraj@gmail.com
                 </a>
@@ -49,7 +39,7 @@ export default function Footer() {
                             <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE" />
                             <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83" />
                             <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262" />
-                            <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E" />
+                            <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF" />
                             <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF" />
                         </svg>
                     </a>
@@ -93,10 +83,21 @@ export default function Footer() {
                     </a>
                 </div>
 
-                {/* Copyright */}
-                <p className="text-white/25 text-xs font-sans">
-                    &copy; {new Date().getFullYear()} Suraj Mishra. All Rights Reserved.
+                {/* Tagline */}
+                <p className="text-white/80 dark:text-stone-400 font-sans text-xs md:text-sm max-w-sm mx-auto leading-relaxed transition-colors duration-700">
+                    Designing experiences that matter.
+                    <br />Built with React, GSAP, and excessive coffee.
                 </p>
+
+                {/* Copyright and Location */}
+                <div className="pt-8 border-t border-white/10 dark:border-white/5 flex flex-col md:flex-row items-center justify-between gap-4 transition-colors duration-700">
+                    <p className="text-white/60 dark:text-stone-500 font-sans text-xs flex items-center gap-1 transition-colors duration-700">
+                        Based with <Heart size={12} className="text-rose-400/80 dark:text-rose-500/80 fill-current" /> in Mysore
+                    </p>
+                    <p className="text-white/40 dark:text-stone-600 font-sans text-xs transition-colors duration-700">
+                        &copy; {new Date().getFullYear()} Suraj Mishra. All rights reserved.
+                    </p>
+                </div>
             </div>
         </footer>
     );

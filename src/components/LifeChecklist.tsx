@@ -136,69 +136,59 @@ export default function LifeChecklist() {
     return (
         <section
             ref={containerRef}
-            className="relative py-16 md:py-24 lg:py-32 px-5 md:px-6 overflow-hidden"
-            style={{
-                background: `
-          linear-gradient(180deg,
-            #e0d4f0 0%,
-            #ddd0ed 20%,
-            #dacce8 40%,
-            #d8c9e5 60%,
-            #d6c8e4 80%,
-            #d4c8e8 100%
-          )
-        `,
-            }}
+            className="section-bg-checklist relative py-16 md:py-24 lg:py-32 px-5 md:px-6 overflow-hidden"
         >
             {/* Scattered Doodles — more visible on pastel backgrounds */}
-            <PaperPlane className="doodle doodle-float absolute top-12 right-8 md:right-16 text-purple-800/35 rotate-12 scale-75 md:scale-100" />
-            <Star className="doodle doodle-float-delay absolute top-16 left-[35%] text-purple-700/40 scale-110" />
-            <Compass className="doodle doodle-float absolute top-8 left-[55%] md:left-[60%] text-purple-800/25 rotate-12" />
-            <DottedLine className="doodle absolute top-24 left-4 md:left-12 text-purple-700/25 rotate-6" />
+            <div className="dark:opacity-40 transition-opacity duration-700">
+                <PaperPlane className="doodle doodle-float absolute top-12 right-8 md:right-16 text-purple-800/35 dark:text-indigo-200/50 rotate-12 scale-75 md:scale-100" />
+                <Star className="doodle doodle-float-delay absolute top-16 left-[35%] text-purple-700/40 dark:text-indigo-300/50 scale-110" />
+                <Compass className="doodle doodle-float absolute top-8 left-[55%] md:left-[60%] text-purple-800/25 dark:text-indigo-200/40 rotate-12" />
+                <DottedLine className="doodle absolute top-24 left-4 md:left-12 text-purple-700/25 dark:text-indigo-200/30 rotate-6" />
 
-            <CurvedArrow className="doodle doodle-float-delay-2 absolute top-[28%] left-4 md:left-10 text-purple-800/30 scale-75 md:scale-100" />
-            <Heart className="doodle doodle-float absolute top-[35%] left-[12%] text-pink-600/35 scale-110" />
-            <Globe className="doodle doodle-float-delay absolute top-[50%] left-6 md:left-16 text-purple-700/25" />
-            <Spiral className="doodle doodle-float-delay-2 absolute top-[65%] left-[8%] text-purple-800/30" />
+                <CurvedArrow className="doodle doodle-float-delay-2 absolute top-[28%] left-4 md:left-10 text-purple-800/30 dark:text-indigo-300/40 scale-75 md:scale-100" />
+                <Heart className="doodle doodle-float absolute top-[35%] left-[12%] text-pink-600/35 dark:text-pink-400/60 scale-110" />
+                <Globe className="doodle doodle-float-delay absolute top-[50%] left-6 md:left-16 text-purple-700/25 dark:text-indigo-200/30" />
+                <Spiral className="doodle doodle-float-delay-2 absolute top-[65%] left-[8%] text-purple-800/30 dark:text-indigo-300/40" />
 
-            <Mountain className="doodle doodle-float-delay absolute top-[25%] right-4 md:right-12 text-purple-700/25 -rotate-3" />
-            <Squiggle className="doodle doodle-float absolute top-[42%] right-6 md:right-16 text-purple-800/35 rotate-6" />
-            <Ticket className="doodle doodle-float-delay-2 absolute top-[55%] right-[8%] text-purple-700/25 rotate-3" />
-            <Star className="doodle doodle-float absolute top-[68%] right-[15%] text-pink-600/35 scale-125" />
+                <Mountain className="doodle doodle-float-delay absolute top-[25%] right-4 md:right-12 text-purple-700/25 dark:text-indigo-200/30 -rotate-3" />
+                <Squiggle className="doodle doodle-float absolute top-[42%] right-6 md:right-16 text-purple-800/35 dark:text-indigo-300/50 rotate-6" />
+                <Ticket className="doodle doodle-float-delay-2 absolute top-[55%] right-[8%] text-purple-700/25 dark:text-indigo-200/30 rotate-3" />
+                <Star className="doodle doodle-float absolute top-[68%] right-[15%] text-pink-600/35 dark:text-pink-400/60 scale-125" />
 
-            <Camera className="doodle doodle-float-delay absolute bottom-16 right-[20%] text-purple-800/30 -rotate-6" />
-            <DottedLine className="doodle absolute bottom-[18%] left-4 md:left-14 text-purple-700/25 -rotate-12" />
-            <PaperPlane className="doodle doodle-float-delay-2 absolute bottom-10 left-[50%] text-purple-800/30 scale-75 -rotate-12" />
-            <Star className="doodle doodle-float absolute bottom-28 left-[25%] text-pink-600/30 scale-90" />
-            <DottedLine className="doodle absolute bottom-8 right-8 text-purple-700/25 rotate-30" />
-            <Squiggle className="doodle doodle-float-delay absolute bottom-[30%] right-[5%] text-purple-800/25 -rotate-6" />
+                <Camera className="doodle doodle-float-delay absolute bottom-16 right-[20%] text-purple-800/30 dark:text-indigo-300/40 -rotate-6" />
+                <DottedLine className="doodle absolute bottom-[18%] left-4 md:left-14 text-purple-700/25 dark:text-indigo-200/30 -rotate-12" />
+                <PaperPlane className="doodle doodle-float-delay-2 absolute bottom-10 left-[50%] text-purple-800/30 dark:text-indigo-300/50 scale-75 -rotate-12" />
+                <Star className="doodle doodle-float absolute bottom-28 left-[25%] text-pink-600/30 dark:text-pink-400/50 scale-90" />
+                <DottedLine className="doodle absolute bottom-8 right-8 text-purple-700/25 dark:text-indigo-200/30 rotate-30" />
+                <Squiggle className="doodle doodle-float-delay absolute bottom-[30%] right-[5%] text-purple-800/25 dark:text-indigo-200/40 -rotate-6" />
+            </div>
 
             <div className="max-w-2xl mx-auto relative z-10">
-                <h2 className="font-hand text-2xl md:text-3xl text-dark/50 mb-4">
+                <h2 className="font-hand text-2xl md:text-3xl text-dark/50 dark:text-indigo-200/60 mb-4 transition-colors duration-700">
                     Life Checklist
                 </h2>
-                <p className="text-dark/40 text-sm font-sans mb-12 leading-relaxed">
+                <p className="text-dark/40 dark:text-indigo-200/40 text-sm font-sans mb-12 leading-relaxed transition-colors duration-700">
                     Things I've done, and things I still dream about. Completed items are crossed off — the rest are in progress.
                 </p>
 
                 {/* Single Combined List */}
                 <div className="space-y-4">
                     {allItems.map((item, i) => (
-                        <div key={i} className="checklist-item flex items-center gap-4 py-3 border-b border-purple-900/10">
+                        <div key={i} className="checklist-item flex items-center gap-4 py-3 border-b border-purple-900/10 dark:border-indigo-400/20 transition-colors duration-700">
                             {item.isCompleted ? (
                                 // Completed Checkmark Box
-                                <div className="w-5 h-5 rounded-full border-2 border-purple-400/50 flex items-center justify-center flex-shrink-0">
-                                    <div className="w-2.5 h-2.5 rounded-full bg-purple-400/60"></div>
+                                <div className="w-5 h-5 rounded-full border-2 border-purple-400/50 dark:border-indigo-400/50 flex items-center justify-center flex-shrink-0 transition-colors duration-700">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-purple-400/60 dark:bg-indigo-400/60 transition-colors duration-700"></div>
                                 </div>
                             ) : (
                                 // Empty Box
-                                <div className="w-5 h-5 rounded-full border-2 border-purple-500/30 flex-shrink-0"></div>
+                                <div className="w-5 h-5 rounded-full border-2 border-purple-500/30 dark:border-indigo-400/30 flex-shrink-0 transition-colors duration-700"></div>
                             )}
 
-                            <span className={item.isCompleted
-                                ? "text-dark/60 font-sans text-sm md:text-base line-through decoration-purple-500/50"
-                                : "text-dark/90 font-sans text-sm md:text-base font-medium"
-                            }>
+                            <span className={`transition-colors duration-700 ${item.isCompleted
+                                ? "text-dark/60 dark:text-indigo-200/50 font-sans text-sm md:text-base line-through decoration-purple-500/50 dark:decoration-indigo-400/40"
+                                : "text-dark/90 dark:text-indigo-50 font-sans text-sm md:text-base font-medium"
+                                }`}>
                                 {item.text}
                             </span>
                         </div>

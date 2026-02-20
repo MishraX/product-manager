@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ─── Design Tokens (Tailwind v4 CSS-first) ─── */
 @theme {
   --color-cream: #FDFCF6;
@@ -138,6 +140,113 @@ body {
 
 .bounce-arrow {
   animation: gentleBounce 2s ease-in-out infinite;
+}
+
+/* ─── Seamless Dark Mode Gradient Crossfading ─── */
+.section-bg-hero,
+.section-bg-bio,
+.section-bg-exp,
+.section-bg-skills,
+.section-bg-checklist,
+.section-bg-footer {
+  position: relative;
+}
+
+.section-bg-hero::before,
+.section-bg-bio::before,
+.section-bg-exp::before,
+.section-bg-skills::before,
+.section-bg-checklist::before,
+.section-bg-footer::before,
+.section-bg-hero::after,
+.section-bg-bio::after,
+.section-bg-exp::after,
+.section-bg-skills::after,
+.section-bg-checklist::after,
+.section-bg-footer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  transition: opacity 1s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+/* Light Mode Backgrounds */
+.section-bg-hero::before {
+  background: linear-gradient(180deg, #8B7355 0%, #a08868 15%, #bda482 30%, #d4c4a0 45%, #e8dcc4 60%, #f2ece0 75%, #f8f5ee 88%, #FDFCF6 100%);
+}
+
+.section-bg-bio::before {
+  background: linear-gradient(180deg, #FDFCF6 0%, #f5f5f8 15%, #e8eef8 30%, #d8e4f5 50%, #c8d8f0 70%, #b8d4f0 85%, #a8ccf0 100%);
+}
+
+.section-bg-exp::before {
+  background: linear-gradient(180deg, #a8ccf0 0%, #e0e5f0 15%, #e8dfe8 30%, #f0dade 45%, #f2d8d5 60%, #f4d6d1 75%, #f5d5d0 100%);
+}
+
+.section-bg-skills::before {
+  background: linear-gradient(180deg, #f5d5d0 0%, #f0d2d2 15%, #ebd0d8 30%, #e5cee0 45%, #e2cfe6 60%, #e0d2ec 80%, #e0d4f0 100%);
+}
+
+.section-bg-checklist::before {
+  background: linear-gradient(180deg, #e0d4f0 0%, #ddd0ed 20%, #dacce8 40%, #d8c9e5 60%, #d6c8e4 80%, #d4c8e8 100%);
+}
+
+.section-bg-footer::before {
+  background: linear-gradient(180deg, #d4c8e8 0%, #c8bce0 8%, #b8add5 16%, #a89ec8 24%, #9890bb 32%, #8882ae 40%, #7872a0 48%, #686292 55%, #585282 62%, #484370 69%, #383460 76%, #282550 82%, #1a1840 88%, #10102a 93%, #0a0a0a 100%);
+}
+
+/* Dark Mode Backgrounds */
+.section-bg-hero::after {
+  opacity: 0;
+  background: linear-gradient(180deg, #020106 0%, #080614 15%, #0d0a21 30%, #110d2e 45%, #150f3b 60%, #171047 75%, #180e54 88%, #160a5e 100%);
+}
+
+.section-bg-bio::after {
+  opacity: 0;
+  background: linear-gradient(180deg, #160a5e 0%, #170757 20%, #1a0550 40%, #1c0347 60%, #220240 80%, #290038 100%);
+}
+
+.section-bg-exp::after {
+  opacity: 0;
+  background: linear-gradient(180deg, #290038 0%, #300236 15%, #380436 30%, #420633 45%, #4a092d 60%, #520b26 75%, #5e0d1d 100%);
+}
+
+.section-bg-skills::after {
+  opacity: 0;
+  background: linear-gradient(180deg, #5e0d1d 0%, #540c26 15%, #4a0c30 30%, #3d0b3b 45%, #300a45 60%, #22084f 80%, #140559 100%);
+}
+
+.section-bg-checklist::after {
+  opacity: 0;
+  background: linear-gradient(180deg, #140559 0%, #10044d 20%, #0c0340 40%, #0a0233 60%, #070126 80%, #05011a 100%);
+}
+
+.section-bg-footer::after {
+  opacity: 0;
+  background: linear-gradient(180deg, #05011a 0%, #040117 15%, #030014 30%, #020012 45%, #02000f 60%, #01000a 80%, #000000 100%);
+}
+
+/* Toggle Triggers */
+.dark .section-bg-hero::before,
+.dark .section-bg-bio::before,
+.dark .section-bg-exp::before,
+.dark .section-bg-skills::before,
+.dark .section-bg-checklist::before,
+.dark .section-bg-footer::before {
+  opacity: 0;
+}
+
+.dark .section-bg-hero::after,
+.dark .section-bg-bio::after,
+.dark .section-bg-exp::after,
+.dark .section-bg-skills::after,
+.dark .section-bg-checklist::after,
+.dark .section-bg-footer::after {
+  opacity: 1;
 }
 
 /* ─── Doodle float animations ─── */
