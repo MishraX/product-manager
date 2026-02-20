@@ -42,7 +42,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     return (
         <div
             ref={containerRef}
-            className="fixed inset-0 z-[100] flex items-center justify-center bg-dark"
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black"
         >
             <h1
                 ref={textRef}
