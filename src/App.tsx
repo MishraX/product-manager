@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLenis } from './hooks/useLenis';
 import LoadingScreen from './components/LoadingScreen';
 import Hero from './components/Hero';
 import Bio from './components/Bio';
@@ -9,6 +10,7 @@ import Footer from './components/Footer';
 
 function App() {
   const [loading, setLoading] = useState(true);
+  useLenis();
 
   return (
     <>

@@ -2,10 +2,9 @@ import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ArrowUpRight, FileText, Linkedin } from "lucide-react";
+import MagneticButton from "./MagneticButton";
 
 gsap.registerPlugin(ScrollTrigger);
-
-
 
 export default function Experience() {
     const containerRef = useRef(null);
@@ -74,17 +73,72 @@ export default function Experience() {
             ref={containerRef}
             className="section-bg-exp relative py-16 md:py-24 lg:py-32 px-5 md:px-6"
         >
+            {/* SVG Distortion Filter — hidden but applied to image */}
+            <svg className="absolute w-0 h-0 overflow-hidden" aria-hidden="true">
+                <defs>
+                    <filter id="photo-distort">
+                        <feTurbulence
+                            id="turbulence"
+                            type="turbulence"
+                            baseFrequency="0 0"
+                            numOctaves="2"
+                            seed="2"
+                            result="turbulence"
+                        />
+                        <feDisplacementMap
+                            in="SourceGraphic"
+                            in2="turbulence"
+                            scale="0"
+                            xChannelSelector="R"
+                            yChannelSelector="G"
+                            result="displaced"
+                        />
+                    </filter>
+                </defs>
+            </svg>
+
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 relative z-10">
 
                 {/* Left: Profile Card */}
                 <div className="lg:col-span-4 exp-reveal">
                     <div className="bg-white/50 dark:bg-black/20 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-white/60 dark:border-white/10 sticky top-8 transition-colors duration-700">
-                        {/* Profile Photo */}
-                        <div className="aspect-square md:aspect-[3/4] rounded-xl overflow-hidden mb-5 bg-stone-200">
+                        {/* Profile Photo with distortion on hover */}
+                        <div
+                            className="aspect-square md:aspect-[3/4] rounded-xl overflow-hidden mb-5 bg-stone-200 group cursor-pointer"
+                            onMouseEnter={() => {
+                                if (window.matchMedia('(hover: none)').matches) return;
+                                const turbulence = document.getElementById('turbulence') as SVGFETurbulenceElement | null;
+                                if (!turbulence) return;
+                                gsap.to({ val: 0 }, {
+                                    val: 1,
+                                    duration: 0.4,
+                                    ease: 'power2.in',
+                                    onUpdate: function () {
+                                        turbulence.setAttribute('baseFrequency', `${this.targets()[0].val * 0.02} ${this.targets()[0].val * 0.01}`);
+                                    }
+                                });
+                                const dispMap = document.querySelector('#photo-distort feDisplacementMap') as SVGFEDisplacementMapElement | null;
+                                if (dispMap) gsap.to(dispMap, { attr: { scale: 22 }, duration: 0.4, ease: 'power2.in' });
+                            }}
+                            onMouseLeave={() => {
+                                const turbulence = document.getElementById('turbulence') as SVGFETurbulenceElement | null;
+                                const dispMap = document.querySelector('#photo-distort feDisplacementMap') as SVGFEDisplacementMapElement | null;
+                                if (turbulence) gsap.to({ val: 1 }, {
+                                    val: 0,
+                                    duration: 0.6,
+                                    ease: 'power2.out',
+                                    onUpdate: function () {
+                                        turbulence.setAttribute('baseFrequency', `${this.targets()[0].val * 0.02} ${this.targets()[0].val * 0.01}`);
+                                    }
+                                });
+                                if (dispMap) gsap.to(dispMap, { attr: { scale: 0 }, duration: 0.6, ease: 'power2.out' });
+                            }}
+                        >
                             <img
                                 src="/profile.png"
                                 alt="Suraj Mishra"
-                                className="w-full h-full object-cover grayscale-[30%] hover:grayscale-0 transition-all duration-700"
+                                className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-700"
+                                style={{ filter: 'url(#photo-distort)' }}
                                 onError={(e) => {
                                     const target = e.currentTarget;
                                     target.style.display = 'none';
@@ -99,30 +153,34 @@ export default function Experience() {
                         <p className="text-stone-500 dark:text-indigo-200/70 text-sm font-sans mt-1 transition-colors duration-700">Product Manager</p>
                         <p className="text-stone-400 dark:text-stone-400 text-xs font-sans mt-0.5 transition-colors duration-700">Mysore, Karnataka</p>
 
-                        {/* Buttons */}
+                        {/* Magnetic Buttons */}
                         <div className="flex gap-3 mt-6">
-                            <a
+                            <MagneticButton
+                                as="a"
                                 href="/resume.pdf"
-                                onClick={(e) => {
+                                download="Suraj_Mishra_Resume.pdf"
+                                onClick={(e: React.MouseEvent) => {
                                     const isMobile = /Android|iPhone|iPad|iPod|webOS/i.test(navigator.userAgent) || window.innerWidth < 768;
                                     if (isMobile) {
                                         e.preventDefault();
                                         window.open('/resume.pdf', '_blank');
                                     }
                                 }}
-                                download="Suraj_Mishra_Resume.pdf"
                                 className="flex-1 flex items-center justify-center gap-2 bg-dark/90 text-cream py-3 px-4 rounded-full text-sm font-sans font-medium hover:bg-dark transition-colors"
+                                strength={0.4}
                             >
                                 <span className="hidden md:inline">Résumé</span> <FileText size={14} />
-                            </a>
-                            <a
+                            </MagneticButton>
+                            <MagneticButton
+                                as="a"
                                 href="https://linkedin.com/in/mishrax27"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="flex-1 flex items-center justify-center gap-2 border border-stone-300/60 dark:border-white/10 bg-white/30 dark:bg-white/5 py-3 px-4 rounded-full text-sm font-sans font-medium hover:bg-white/50 dark:hover:bg-white/10 transition-colors text-dark dark:text-stone-200"
+                                strength={0.4}
                             >
                                 <span className="hidden md:inline">LinkedIn</span> <Linkedin size={14} />
-                            </a>
+                            </MagneticButton>
                         </div>
                     </div>
                 </div>
@@ -144,7 +202,7 @@ export default function Experience() {
                         </div>
                     </div>
 
-                    {/* Education — subtle separate box */}
+                    {/* Education */}
                     <div className="exp-reveal">
                         <h3 className="font-hand text-2xl md:text-3xl text-dark/50 dark:text-indigo-200/60 mb-6 transition-colors duration-700">Education</h3>
                         <div className="bg-white/40 dark:bg-black/20 backdrop-blur-sm border border-white/50 dark:border-white/10 rounded-xl p-5 md:p-6 transition-colors duration-700">

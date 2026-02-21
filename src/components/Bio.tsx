@@ -1,6 +1,7 @@
 import { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import StatCounter from "./StatCounter";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,6 +43,13 @@ export default function Bio() {
                     <p className="bio-line">
                         Outside of writing PRDs and gently negotiating scope creep with engineers, you'll usually find me trekking up random mountains, exploring obscure beaches, attempting to cook without burning the kitchen down, or pretending I'm a professional photographer.
                     </p>
+                </div>
+
+                {/* Animated Stat Counters */}
+                <div className="bio-line mt-12 md:mt-16 grid grid-cols-3 gap-4 md:gap-8 border-t border-dark/10 dark:border-white/10 pt-10 transition-colors duration-700">
+                    <StatCounter value={4} suffix="+" label="Years Experience" />
+                    <StatCounter value={3} label="Companies" />
+                    <StatCounter value={3} label="Live Projects" />
                 </div>
             </div>
         </section>
